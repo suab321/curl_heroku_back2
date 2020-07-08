@@ -13,6 +13,7 @@ router.post('/register', async(req,res)=>{
     db.password = await bcrypt.hash(req.body.password,10);
     try{
         const data = await db.save();
+        console.log(data);
         const token = await createToken(data);
         res.status(200).json(token);
     }catch(err){
